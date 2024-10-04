@@ -6,25 +6,20 @@
     <title>Contact</title>
     <link rel="stylesheet" href="monstyle.css"
 </head>
-
 <body>
-    <form method="post" action="mail.php">
-        <textarea rows="10" cols="30" name="message"></textarea>
-        <input type="submit">  
-        <label>Votre email</label>
-        <input type="email" name="email" required>
-        <label>Tape ton message ici pour nous écrire</label>
-        <textarea name="message" required></textarea>
-        <input type="submit">
-    </form>
-    <?php
-    if (isset($_POST['message'])) {
-        $entete  = 'MIME-Version: 1.0' . "\r\n";
-        $entete .= 'Content-type: text/html; charset=utf-8' . "\r\n";
-        $entete .= 'From: pas-repondre-no-reply@u4itel.info' . "\r\n";
-        $entete .= 'Reply-to: ' . $_POST['email'];
-
-    }
-    ?>
+    <form name="contact" method="POST" data-netlify="true">
+  <p>
+    <label>Your Name: <input type="text" name="name" /></label>
+  </p>
+  <p>
+    <label>Your Email: <input type="email" name="email" /></label>
+  </p>
+  <p>
+    <label>Message: <textarea name="message"></textarea></label>
+  </p>
+  <p>
+    <button type="submit">Send</button>
+  </p>
+</form>
 </body>
 </html>
