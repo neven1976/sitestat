@@ -19,6 +19,9 @@
   </p>
   <p>
     <button type="submit">Send</button>
+      $retour = mail('neli.cheretretyahoo.fr', 'Envoi depuis la page Contact', $_POST['message'], 'From: pas-repondre-no-reply@u4itel.info);
+    if ($retour)
+        echo '<p>Votre message a bien été envoyé.</p>';
   </p>
 </form>
 </body>
