@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="monstyle.css"
 </head>
 <body>
-    <form name="contact" method="POST" action="/reflexions.html" data-netlify="true">
+    <form name="contact" method="POST" action="reflexions.html" data-netlify="true">
   <p>
     <label>Your Name: <input type="text" name="name" /></label>
   </p>
@@ -19,11 +19,8 @@
     <label>Message: <textarea name="message"></textarea></label>
   </p>
   <p>
-    <button type="submit">Send</button>
-      $retour = mail('neli.cheretretyahoo.fr', 'Envoi depuis la page Contact', $_POST['message'], 'From: pas-repondre-no-reply@u4itel.info);
-    if ($retour)
-        echo '<p>Votre message a bien été envoyé.</p>';
-  </p>
+    <button type="submit">Envoyer</button>
+</p>
 </form>
 </body>
 </html>
