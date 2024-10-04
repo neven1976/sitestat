@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8">
     <title>Envoi d'un message par formulaire</title>
-    <link rel="stylesheet" href="monstyle.css"
 </head>
 <body>
     <?php
