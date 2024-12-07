@@ -28,6 +28,32 @@ Les incidents (on espère qu'ils seront rares ou non-existants ) sont marqué da
 pour EI Neven pendant 1 an. 
 <p>- une procédure de gestion du personnel</p>
 EI Neven pour ces employés (s'il en y a) garde l'nfo personnelle selon le Code de Travail et la Comtabilité en France.
-Mis à jour : le 05 décembre 2024, 57280 FRANCE
+<script>
+contextMenuCatch = {
+	ie: function(){
+		if( document.all ){
+			return false;
+		}
+	},
+	netscape: function(e){
+		if( document.layers || (document.getElementById && !document.all) ){
+			if( e.which == 2 || e.which == 3 ){
+				return false;
+			}
+		}
+	}
+}
+
+if (document.layers) {
+	document.captureEvents(Event.mousedown);
+	document.onmousedown = contextMenuCatch.netscape;
+} else {
+	document.onmouseup = contextMenuCatch.netscape;
+	document.oncontextmenu = contextMenuCatch.ie;
+}
+document.oncontextmenu = new Function("return false");
+document.onselectstart = new Function("return false");
+</script>
+Mis à jour : le 07 décembre 2024, 57280 FRANCE
 </body>
 </html>
