@@ -19,8 +19,8 @@ exports.handler = async function(event, context) {
         },
       ],
       mode: "payment",
-      success_url: "https://yoursite.com/success",
-      cancel_url: "https://yoursite.com/cancel",
+      success_url: "https://u4itel.info/success",
+      cancel_url: "https://u4itel.info/cancel",
     });
 
     return {
