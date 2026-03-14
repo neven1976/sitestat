@@ -32,13 +32,15 @@
   </div>
   <button id="checkout-button">Buy Now</button>
 
-<script>
-document.getElementById("checkout-button").addEventListener("click", async () => {
-  const res = await fetch("/.netlify/functions/create-checkout-session", {
-    method: "POST",
-  });
-  const data = await res.json();
-  window.location.href = data.url; // redirect to Stripe checkout
+<script async
+  src="https://js.stripe.com/v3/buy-button.js">
+</script>
+
+<stripe-buy-button
+  buy-button-id="buy_btn_1TAuCSDTtd3PrTVVGopVdeNE"
+  publishable-key="pk_live_51T8MmpDTtd3PrTVVSy72lAhlcHEUnMZp6rRJy22euUt6dz4vurSC0CLdr1N5ZySODA7hFKu0IiPGZtZeeW8umL0D00u8zM4wwg"
+>
+</stripe-buy-button>
 });
 </script>
 
