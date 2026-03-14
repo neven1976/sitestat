@@ -30,6 +30,18 @@
     </a>
     <div class="desc">Shorts</div>
   </div>
+  <button id="checkout-button">Buy Now</button>
+
+<script>
+document.getElementById("checkout-button").addEventListener("click", async () => {
+  const res = await fetch("/.netlify/functions/create-checkout-session", {
+    method: "POST",
+  });
+  const data = await res.json();
+  window.location.href = data.url; // redirect to Stripe checkout
+});
+</script>
+
 </div>
   <div class="responsive">
   <div class="gallery">
@@ -44,6 +56,7 @@
     <a target="_blank" href="images/IMG_NappeAnanas.jpg">
       <img src="images/IMG_NappeAnanas.jpg" alt="Nappe">
     </a>
+   
     <div class="desc">Nappe</div>
   </div>
 </div>
