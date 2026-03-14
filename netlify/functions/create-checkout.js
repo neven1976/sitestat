@@ -31,7 +31,10 @@ exports.handler = async function(event, context) {
     return { statusCode: 500, body: error.toString() };
   }
 };
-npm install stripe
+npm install stripe --save
+git add package.json package-lock.json
+git commit -m "chore: add stripe dependency for Netlify function"
+git push
 async function checkout() {
   const response = await fetch("/.netlify/functions/create-checkout");
   const session = await response.json();
