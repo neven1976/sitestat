@@ -35,6 +35,7 @@ exports.handler = async function(event, context) {
     return { statusCode: 500, body: error.toString() };
   }
 };
+npm install stripe
 async function checkout() {
   const response = await fetch("/.netlify/functions/create-checkout");
   const session = await response.json();
