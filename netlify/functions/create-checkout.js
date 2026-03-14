@@ -1,35 +1,32 @@
-import Stripe from "stripe";
-
+const Stripe = require("stripe");
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-export async function handler(event) {
+exports.handler = async function(event, context) {
   try {
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ['card'],
+      payment_method_types: ["card"],
       line_items: [
         {
           price_data: {
-            currency: 'usd',
+            currency: "usd",
             product_data: {
-              name: 'Sample Product',
+              name: "Example Product",
             },
-            unit_amount: 5000, // $50.00
+            unit_amount: 2000,
           },
           quantity: 1,
         },
       ],
-      mode: 'payment',
-      success_url: `${process.env.URL}/success.html`,
-      cancel_url: `${process.env.URL}/cancel.html`,
+      mode: "payment",
+      success_url: "https://yoursite.com/success",
+      cancel_url: "https://yoursite.com/cancel",
     });
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ url: session.url }),
+      body: JSON.stringify({ id: session.id }),
     };
-  } catch (err) {
-    return { statusCode: 500, body: err.toString() };
+  } catch (error) {
+    return { statusCode: 500, body: error.toString() };
   }
-}
-•	process.env.STRIPE_SECRET_KEY → store your secret key in Netlify environment variables.
-•	process.env.URL → your site URL (can also use https://your-site.netlify.app).
+};
