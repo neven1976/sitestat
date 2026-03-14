@@ -31,3 +31,13 @@ exports.handler = async function(event, context) {
     return { statusCode: 500, body: error.toString() };
   }
 };
+async function checkout() {
+  const response = await fetch("/.netlify/functions/create-checkout");
+  const session = await response.json();
+
+  const stripe = Stripe("pk_test_mk_1T8MmuDTtd3PrTVVaExvIv9f");
+  stripe.redirectToCheckout({ sessionId: session.id });
+}
+Button example:
+<button onclick="checkout()">Pay Now</button>
+
