@@ -1,49 +1,35 @@
+import Stripe from "stripe";
 
-const Stripe = require("stripe");
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 
-exports.handler = async function(event, context) {
+export async function handler(event) {
   try {
     const session = await stripe.checkout.sessions.create({
-      payment_method_types: ["card"],
+      payment_method_types: ['card'],
       line_items: [
         {
           price_data: {
-            currency: "usd",
+            currency: 'usd',
             product_data: {
-              name: "Example Product",
+              name: 'Sample Product',
             },
-            unit_amount: 2000,
+            unit_amount: 5000, // $50.00
           },
           quantity: 1,
         },
       ],
-      mode: "payment",
-      success_url: "https://u4itel.info/success",
-      cancel_url: "https://u4itel.info/cancel",
+      mode: 'payment',
+      success_url: `${process.env.URL}/success.html`,
+      cancel_url: `${process.env.URL}/cancel.html`,
     });
 
     return {
       statusCode: 200,
-      body: JSON.stringify({ id: session.id }),
+      body: JSON.stringify({ url: session.url }),
     };
-  } catch (error) {
-    return { statusCode: 500, body: error.toString() };
+  } catch (err) {
+    return { statusCode: 500, body: err.toString() };
   }
-};
-npm install stripe --save
-git add package.json package-lock.json
-git commit -m "chore: add stripe dependency for Netlify function"
-git push
-async function checkout() {
-  const response = await fetch("/.netlify/functions/create-checkout");
-  const session = await response.json();
-
-  const stripe = Stripe("pk_test_mk_1T8MmuDTtd3PrTVVaExvIv9f");
-  stripe.redirectToCheckout({ sessionId: session.id });
 }
-Button example:
-<button onclick="checkout()">Pay Now</button>
-
-
-
+•	process.env.STRIPE_SECRET_KEY → store your secret key in Netlify environment variables.
+•	process.env.URL → your site URL (can also use https://your-site.netlify.app).
